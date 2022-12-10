@@ -38,7 +38,7 @@ def search_rssi(mac_addr,out_file, debug=False):
 def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,add_nas=False):
     
     # get time to save data
-    ct = str(datetime.datetime.now)
+    ct = str(datetime.datetime.now())
     search_rssi(list(mac_df.mac), raw_save,debug=debug)
     
     #bluetooth program takes time tor un - wait a bit
@@ -62,7 +62,7 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
             print(mc)
             print(cn)
         
-        outl = ",".join([ct,cn,rssi])
+        outl = ",".join([ct,cn,rssi]) +"\n"
         if debug:
             print(outl)
         out.write(outl)
