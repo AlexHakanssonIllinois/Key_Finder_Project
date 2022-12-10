@@ -27,7 +27,7 @@ def search_rssi(mac_addr,out_file, debug=False):
     mac_grp = "\|".join(mac_addr)
     
 
-    cmd_str = "sudo btmgmt find | grep " + mac_grp + " > " + out_file  
+    cmd_str = "sudo btmgmt find | grep '" + mac_grp + "' > " + out_file  
     
     if (debug):
         print(cmd_str)
