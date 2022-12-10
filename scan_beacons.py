@@ -11,7 +11,7 @@ mac_df = pd.DataFrame([["alexkey","20:22:07:01:01:C3"],["katiekey","20:22:07:01:
 mac_df.columns = ["name","mac"]
 
 raw_save = "rssi_out.txt"
-rssi_csv = "rssi_csv"
+rssi_csv = "rssi.csv"
 
 rssi_fetch_time = 10
 
@@ -39,7 +39,7 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
     
     # get time to save data
     ct = str(datetime.datetime.now)
-    search_rssi(list(mac_df.mac), raw_save)
+    search_rssi(list(mac_df.mac), raw_save,debug=debug)
     
     #bluetooth program takes time tor un - wait a bit
     time.sleep(rssi_fetch_time)
@@ -58,6 +58,8 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
         cn = mac_df.loc[mac_df.mac==mc,"name"]
         
         outl = ",".join([ct,cn,rssi])
+        if debug:
+            print(outl)
         out.write(outl)
         seen.append(cn)
         
