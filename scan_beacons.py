@@ -53,7 +53,7 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
     
     for l in lines:
         rssi = l.split("rssi")[1].strip().split(" ")[0].strip()
-        mc =  l.split(" ")[1]
+        mc =  l.split(" ")[2]
         
         cn = mac_df.loc[mac_df.mac==mc,"name"]
         
