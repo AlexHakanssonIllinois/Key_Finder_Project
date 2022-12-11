@@ -2,7 +2,7 @@ import os
 import datetime
 import pandas as pd
 import time
-
+import aws_upload
 
 #sudo btmgmt find | grep "\|20:22:07:01:01:C6" | sort -n | uniq -w 33
 
@@ -85,8 +85,21 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
             out.write(outl)
             
     out.close()
+
+# search for data then upload
+def search_and_upload():
+    search_rssi_clean()
+    aws_upload.upload_data("rssi.csv")
     
+# if run from command line every ten minutes look for devices
+if __name__ == "__main__":
+
+    while True:
+        search_and_upload()
+        time.delay(10*60)
+        
     
+
     
         
         
