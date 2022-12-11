@@ -55,8 +55,8 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
     
     out = open(rs_csv,"w")
     
-    header = "device,time,keyname,rssi"
-    out.write(
+    header = "device,time,keyname,rssi\n"
+    out.write(header)
     seen = []
     
     for l in lines:
