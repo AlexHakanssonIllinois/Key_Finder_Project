@@ -37,6 +37,11 @@ def search_rssi(mac_addr,out_file, debug=False):
     
 def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,add_nas=False):
     
+    # get device name so its recorded who sent
+    dn = "anonymous"
+    if os.path.exists("device_name.txt")
+        dn = open("device_name.txt","r").readline()
+    
     # get time to save data
     ct = str(datetime.datetime.now())
     search_rssi(list(mac_df.mac), raw_save,debug=debug)
@@ -48,7 +53,10 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
     ## read in rssi data
     lines = open(raw_save,"r").readlines()
     
-    out = open(rs_csv,"a")
+    out = open(rs_csv,"w")
+    
+    header = "device,time,keyname,rssi"
+    out.write(
     seen = []
     
     for l in lines:
@@ -62,7 +70,7 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
             print(mc)
             print(cn)
         
-        outl = ",".join([ct,cn,rssi]) +"\n"
+        outl = ",".join([dn,ct,cn,rssi]) +"\n"
         if debug:
             print(outl)
         out.write(outl)
@@ -73,7 +81,7 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
     if add_nas:
         missing = set(mac.name)- set(seen)
         for m in missing:
-            outl = ",".join([ct,m,"NA"])
+            outl = ",".join([dn,ct,m,"NA"])
             out.write(outl)
             
     out.close()
