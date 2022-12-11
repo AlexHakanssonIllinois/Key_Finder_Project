@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     while True:
         search_and_upload()
-        time.sleep(10*60)
+        time.sleep(60)
         
     
 
