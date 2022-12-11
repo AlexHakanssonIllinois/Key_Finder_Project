@@ -39,7 +39,7 @@ def search_rssi_clean(md=mac_df,r_rssi=raw_save,rs_csv = rssi_csv, debug=False,a
     
     # get device name so its recorded who sent
     dn = "anonymous"
-    if os.path.exists("device_name.txt")
+    if os.path.exists("device_name.txt"):
         dn = open("device_name.txt","r").readline()
     
     # get time to save data
